@@ -13,7 +13,7 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var data = [Artist]()
+    var Artists = [Artist]()
     
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -22,6 +22,8 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
 
@@ -35,15 +37,15 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return Artists.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SongSearchArtistCell", for: indexPath) as? SongSearchArtistCell else{
-            fatalError()
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "SongSearchArtistCell", for: indexPath) as? SongSearchArtistCell else {
+            fatalError("Cell not found")
         }
         
-        let artist = data[indexPath.row]
+        let artist = Artists[indexPath.row]
         
         cell.nameLabel.text = artist.name
         if let url = artist.photo {
@@ -75,7 +77,7 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
             let items = artists["items"] as! [[String:Any]]
             
             
-            self.data.removeAll()
+            self.Artists.removeAll()
             for (artist) in items{
                 let id = artist["id"] as! String
                 let name = artist["name"] as! String
@@ -85,7 +87,10 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
                 if images.count > 0 {
                     imageUrl = images.last?["url"] as! String
                 }
-                self.data.append(Artist(id: id, name: name, imageUrl: imageUrl))
+                self.Artists.append(Artist(id: id, name: name, imageUrl: imageUrl))
+            }
+            DispatchQueue.main.async(){
+                self.tableView.reloadData()
             }
         }
     }
