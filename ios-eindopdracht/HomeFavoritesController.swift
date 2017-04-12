@@ -47,7 +47,7 @@ class HomeFavoritesController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell", for: indexPath) as? HomeFavoritesCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HomeFavoritesCell", for: indexPath) as? HomeFavoritesCell else {
             fatalError("Not of type HomeFavorites")
         }
         

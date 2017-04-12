@@ -15,6 +15,10 @@
 		27189EBF1E9BD20A00CAF2BB /* HomeFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27189EBE1E9BD20A00CAF2BB /* HomeFavoritesCell.swift */; };
 		27189EC11E9BD61E00CAF2BB /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27189EC01E9BD61E00CAF2BB /* Song.swift */; };
 		27189EC61E9C272B00CAF2BB /* SongSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27189EC51E9C272B00CAF2BB /* SongSearchController.swift */; };
+		27A338E11E9DA51C00F41821 /* SongSearchArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A338E01E9DA51B00F41821 /* SongSearchArtistCell.swift */; };
+		27A338E51E9DAF0C00F41821 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A338E41E9DAF0C00F41821 /* Extensions.swift */; };
+		27C890761E9D806B00DF07B1 /* SpotifyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C890751E9D806B00DF07B1 /* SpotifyAPI.swift */; };
+		27C890781E9D999000DF07B1 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C890771E9D999000DF07B1 /* Artist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		27189EBE1E9BD20A00CAF2BB /* HomeFavoritesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeFavoritesCell.swift; sourceTree = "<group>"; };
 		27189EC01E9BD61E00CAF2BB /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		27189EC51E9C272B00CAF2BB /* SongSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSearchController.swift; sourceTree = "<group>"; };
+		27A338E01E9DA51B00F41821 /* SongSearchArtistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongSearchArtistCell.swift; sourceTree = "<group>"; };
+		27A338E41E9DAF0C00F41821 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		27C890751E9D806B00DF07B1 /* SpotifyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpotifyAPI.swift; sourceTree = "<group>"; };
+		27C890771E9D999000DF07B1 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,8 @@
 		27189EAB1E9BCA8F00CAF2BB /* ios-eindopdracht */ = {
 			isa = PBXGroup;
 			children = (
+				27A338E41E9DAF0C00F41821 /* Extensions.swift */,
+				27C890741E9D803800DF07B1 /* Repositories */,
 				27189EC41E9BE1B300CAF2BB /* Controls */,
 				27189EC31E9BE12D00CAF2BB /* Models */,
 				27189EC21E9BE12000CAF2BB /* Controllers */,
@@ -85,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				27189EC01E9BD61E00CAF2BB /* Song.swift */,
+				27C890771E9D999000DF07B1 /* Artist.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -93,8 +104,17 @@
 			isa = PBXGroup;
 			children = (
 				27189EBE1E9BD20A00CAF2BB /* HomeFavoritesCell.swift */,
+				27A338E01E9DA51B00F41821 /* SongSearchArtistCell.swift */,
 			);
 			name = Controls;
+			sourceTree = "<group>";
+		};
+		27C890741E9D803800DF07B1 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				27C890751E9D806B00DF07B1 /* SpotifyAPI.swift */,
+			);
+			name = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,10 +190,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				27189EC61E9C272B00CAF2BB /* SongSearchController.swift in Sources */,
+				27A338E51E9DAF0C00F41821 /* Extensions.swift in Sources */,
+				27A338E11E9DA51C00F41821 /* SongSearchArtistCell.swift in Sources */,
 				27189EC11E9BD61E00CAF2BB /* Song.swift in Sources */,
 				27189EBF1E9BD20A00CAF2BB /* HomeFavoritesCell.swift in Sources */,
+				27C890761E9D806B00DF07B1 /* SpotifyAPI.swift in Sources */,
 				27189EAF1E9BCA8F00CAF2BB /* HomeFavoritesController.swift in Sources */,
 				27189EAD1E9BCA8F00CAF2BB /* AppDelegate.swift in Sources */,
+				27C890781E9D999000DF07B1 /* Artist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +359,7 @@
 				27189EBD1E9BCA8F00CAF2BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

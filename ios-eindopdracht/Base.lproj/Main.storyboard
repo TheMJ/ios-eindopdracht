@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" rowHeight="90" id="AbT-HL-DLh" customClass="HomeFavoritesCell" customModule="ios_eindopdracht" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeFavoritesCell" rowHeight="90" id="AbT-HL-DLh" customClass="HomeFavoritesCell" customModule="ios_eindopdracht" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AbT-HL-DLh" id="YN8-6E-L3m">
@@ -37,9 +37,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZ8-DT-ld9">
-                                            <rect key="frame" x="321" y="29" width="46" height="30"/>
+                                            <rect key="frame" x="319" y="29" width="46" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" title="Buy"/>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -57,7 +57,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Your Favorites" id="LvO-jM-sKj">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="vcg-gP-PO0"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5ad-MU-ras">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="5ad-MU-ras">
                             <connections>
                                 <segue destination="IBi-mi-3Vf" kind="presentation" identifier="searchSong" id="rud-WF-LO3"/>
                             </connections>
@@ -71,33 +71,61 @@
         <!--song-search-->
         <scene sceneID="qfK-UJ-Y13">
             <objects>
-                <viewController title="song-search" id="HXt-fs-xij" customClass="SongSearchController" customModule="ios_eindopdracht" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VNX-IQ-n8t"/>
-                        <viewControllerLayoutGuide type="bottom" id="m8n-dh-JxX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hEc-ZG-mY0">
+                <tableViewController title="song-search" id="HXt-fs-xij" customClass="SongSearchController" customModule="ios_eindopdracht" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="NT8-bf-gXs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzD-4g-FZe">
-                                <rect key="frame" x="166" y="291" width="33" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
+                        <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Search a Song" id="Qts-1n-VBa">
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="ulF-Kp-DnO">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Title</string>
+                                <string>Title</string>
+                            </scopeButtonTitles>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SongSearchArtistCell" rowHeight="90" id="tei-6i-ZFC" customClass="SongSearchArtistCell" customModule="ios_eindopdracht" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tei-6i-ZFC" id="9da-5K-Iwg">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34Q-oF-ze9">
+                                            <rect key="frame" x="17" y="8" width="75" height="75"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9Q-Qk-bHv">
+                                            <rect key="frame" x="100" y="35" width="267" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="image" destination="34Q-oF-ze9" id="vF1-kD-SLQ"/>
+                                    <outlet property="name" destination="t9Q-Qk-bHv" id="X5K-2C-mkG"/>
+                                    <outlet property="nameLabel" destination="t9Q-Qk-bHv" id="SDJ-Mr-Dln"/>
+                                    <outlet property="photoImageView" destination="34Q-oF-ze9" id="K1x-oh-514"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Search an Artist" id="Qts-1n-VBa">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Ns4-Me-Gx1">
                             <connections>
                                 <action selector="cancelButton:" destination="HXt-fs-xij" id="euU-9f-mr3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                </viewController>
+                    <connections>
+                        <outlet property="searchBar" destination="ulF-Kp-DnO" id="efM-sc-bjJ"/>
+                    </connections>
+                </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sY7-al-MyB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2975.1999999999998" y="91.304347826086968"/>
