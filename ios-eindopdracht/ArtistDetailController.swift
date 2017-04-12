@@ -39,7 +39,7 @@ class ArtistDetailController: UIViewController, UITableViewDataSource {
             if let url = artist.photoLarge {
                 self.artistPhoto.downloadedFrom(link: url)
             }
-            SpotifyAPI.GetDataFor(type: .Album, query: artist.id){
+            SpotifyAPI.GetDataFor(requestType: .Album, type: .Album, query: artist.id){
                 response in
                 
                 let resp = response as! [String:Any]
@@ -90,14 +90,16 @@ class ArtistDetailController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let nvc = segue.destination as? UINavigationController {
+            if let vc = nvc.visibleViewController as? AlbumDetailController {
+                if let cell = sender as? ArtistDetailCell {
+                    if let album = cell.AlbumModel {
+                        vc.AlbumModel = album
+                    }
+                }
+            }
+        }
     }
-    */
-
 }
