@@ -20,12 +20,20 @@ class SpotifyAPI{
     
     enum ActionType{
         case Search
+        case Album
     }
     
     static func SearchFor(type: ContentType, query: String, complete: @escaping (_ response: Any) -> Void){
         if let cleanedQuery = self.CleanString(query) {
             let requestUrl = self.BuildRequestUrl(requestType: .Search, contentType: type, cleanedQuery)
             self.ExecuteRequest(requestUrl, complete)
+        }
+    }
+    
+    static func GetDataFor(type: ContentType, query: String, complete: @escaping (_ response: Any) -> Void){
+        if let cleanedQuery = self.CleanString(query) {
+            let reqUrl = self.BuildRequestUrl(requestType: .Album, contentType: type, cleanedQuery)
+            self.ExecuteRequest(reqUrl, complete)
         }
     }
     
@@ -58,11 +66,15 @@ class SpotifyAPI{
         {
             case .Search:
                 requestUrl += "search?q=" + query
+            case .Album:
+                requestUrl += "artists/" + query
         }
         
         switch contentType {
             case .Artist:
                 requestUrl += "&type=artist"
+            case .Album:
+                requestUrl += "/albums?market=NL"
             default:
                 fatalError("Not build type was requested")
         }

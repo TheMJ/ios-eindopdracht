@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SongSearchArtistCell: UITableViewCell {
+class SearchArtistCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
-   
+    
+    var ArtistModel: Artist? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

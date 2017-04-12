@@ -1,5 +1,5 @@
 //
-//  Artist.swift
+//  Album.swift
 //  ios-eindopdracht
 //
 //  Created by Mike Jaartsveld on 4/12/17.
@@ -7,19 +7,19 @@
 //
 
 import Foundation
-import UIKit
 
-class Artist{
+class Album{
     
     var id: String
     var name: String
     var photoSmall: String?
     var photoLarge: String?
     
-    init(id: String, name: String, imageSmallUrl: String?, imageLargeUrl: String?){
+    init(id: String, name: String, imageUrlSmall: String?, imageUrlLarge: String?){
         self.id = id
         self.name = name
-        self.photoSmall = imageSmallUrl
-        self.photoLarge = imageLargeUrl
+        self.photoSmall = imageUrlSmall
+        self.photoLarge = imageUrlLarge
     }
+    
 }

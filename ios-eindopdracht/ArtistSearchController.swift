@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class SongSearchController: UITableViewController, UISearchBarDelegate {
+class ArtistSearchController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -41,14 +41,14 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "SongSearchArtistCell", for: indexPath) as? SongSearchArtistCell else {
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "SearchArtistCell", for: indexPath) as? SearchArtistCell else {
             fatalError("Cell not found")
         }
         
         let artist = Artists[indexPath.row]
-        
+        cell.ArtistModel = artist
         cell.nameLabel.text = artist.name
-        if let url = artist.photo {
+        if let url = artist.photoSmall {
             cell.photoImageView.downloadedFrom(link: url)
         }        
         
@@ -57,7 +57,6 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
-        os_log("Begin editing")
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -67,11 +66,10 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        os_log("Search Button")
         SpotifyAPI.SearchFor(type: .Artist, query: searchBar.text!) {
             response in
             
-            var resp = response as! [String:Any]
+            let resp = response as! [String:Any]
             
             let artists = resp["artists"] as! [String:Any]
             let items = artists["items"] as! [[String:Any]]
@@ -83,11 +81,12 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
                 let name = artist["name"] as! String
                 let images = artist["images"] as! [[String:Any]]
                 
-                var imageUrl = ""
+                var urls = (small: "", large: "")
                 if images.count > 0 {
-                    imageUrl = images.last?["url"] as! String
+                    urls.small = images.last?["url"] as! String
+                    urls.large = images.first?["url"] as! String
                 }
-                self.Artists.append(Artist(id: id, name: name, imageUrl: imageUrl))
+                self.Artists.append(Artist(id: id, name: name, imageSmallUrl: urls.small, imageLargeUrl: urls.large))
             }
             DispatchQueue.main.async(){
                 self.tableView.reloadData()
@@ -95,14 +94,16 @@ class SongSearchController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let nvc = segue.destination as? UINavigationController {
+            if let vc = nvc.visibleViewController as? ArtistDetailController {
+                if let cell = sender as? SearchArtistCell {
+                    if let artist = cell.ArtistModel{
+                        vc.ArtistModel = artist
+                    }
+                }
+            }
+        }
     }
-    */
-
 }
