@@ -13,6 +13,8 @@ class AlbumDetailController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var albumImageView: UIImageView!
     @IBOutlet weak var albumSongsTableView: UITableView!
+    @IBOutlet weak var navigationFavoriteButton: UIBarButtonItem!
+    @IBOutlet weak var albumFavoriteButton: UIButton!
     
     @IBAction func navigateCancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
@@ -20,7 +22,7 @@ class AlbumDetailController: UIViewController, UITableViewDataSource {
     
     @IBAction func albumAddToFavoritesButton(_ sender: UIButton) {
         self.addAlbumToFavorites()
-    }    
+    }
     
     @IBAction func navigateFavoriteButton(_ sender: UIBarButtonItem) {
         self.addAlbumToFavorites()
@@ -35,18 +37,55 @@ class AlbumDetailController: UIViewController, UITableViewDataSource {
         self.setData()
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            if self.albumInLocalStorage() {
+                self.toggleFavoriteButtons(false)
+            }
+            else{
+                self.toggleFavoriteButtons(true)
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func toggleFavoriteButtons(_ enabled: Bool){
+        if enabled {
+            albumFavoriteButton.isEnabled = true
+            albumFavoriteButton.backgroundColor = UIColor.yellow
+            albumFavoriteButton.setTitle("Add to Favorites", for: .normal)
+            navigationFavoriteButton.isEnabled = true
+        }else{
+            albumFavoriteButton.isEnabled = false
+            albumFavoriteButton.backgroundColor = UIColor.lightGray
+            albumFavoriteButton.setTitle("Added!", for: .disabled)
+            navigationFavoriteButton.isEnabled = false
+        }
+    }
+    
     func addAlbumToFavorites(){
-        print("Added album to favorites")
+        if let album = self.AlbumModel {
+            if LocalStorageRepository.Add(album){
+                toggleFavoriteButtons(false)
+            }
+        }
+    }
+    
+    func albumInLocalStorage() -> Bool
+    {
+        if let album = self.AlbumModel {
+            return LocalStorageRepository.Contains(album)
+        }
+        return false
     }
     
     func setData(){
-        if let album = AlbumModel {
+        if let album = self.AlbumModel {
             navigationItem.title = album.name
             if let url = album.photoLarge {
                 self.albumImageView.downloadedFrom(link: url)
@@ -93,9 +132,7 @@ class AlbumDetailController: UIViewController, UITableViewDataSource {
         cell.trackNrLabel.text = "#\(track.number)"
         cell.trackNameLabel.text = track.name
         let (m, s) = self.msToMinutesSeconds(ms: track.duration)
-        let minutes = String(format: "%.0f", m)
-        let seconds = String(format: "%.0f", s)
-        cell.trackDurationLabel.text = "Duration: \(minutes):\(seconds) minutes"
+        cell.trackDurationLabel.text = "Duration: \(formatForUse(nr: m)):\(formatForUse(nr: s)) minutes"
         
         return cell
     }
@@ -104,6 +141,11 @@ class AlbumDetailController: UIViewController, UITableViewDataSource {
         let seconds = Double(ms / 1000)
         let remainder = seconds.truncatingRemainder(dividingBy: 3600)
         return (remainder / 60, remainder.truncatingRemainder(dividingBy: 60))
+    }
+    
+    func formatForUse(nr: Double) -> String {
+        let rounded = String(format: "%.0f", floor(nr))
+        return floor(nr) < 10 ? "0\(rounded)" : "\(rounded)"
     }
     
     /*

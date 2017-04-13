@@ -75,22 +75,29 @@ class SpotifyAPI{
         
         switch contentType {
             case .Artist:
-                requestUrl += "&type=artist"
+                requestUrl += "&type=artist&limit=50"
             case .Album:
-                requestUrl += "/albums?market=NL"
+                requestUrl += "/albums?market=NL&limit=50"
             case .Track:
-                requestUrl += "/tracks"
+                requestUrl += "/tracks?limit=50"
         }
         
         return self.baseRequestUrl + requestUrl
     }
     
     static func CleanString(_ query: String) -> String?{
+        var newQuery = query
         
-        if( query.isEmpty )
+        newQuery = newQuery.trimmingCharacters(in: .whitespaces)
+        
+        if let result = newQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
+            newQuery = result
+        }
+        
+        if( newQuery.isEmpty )
         {
             return nil
         }
-        return query;
+        return newQuery;
     }
 }

@@ -11,20 +11,19 @@ import os.log
 
 class HomeFavoritesController: UITableViewController{
 
-    var songs = [Song]()
+    var albums = [Album]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
         // Do any additional setup after loading the view, typically from a nib
-        if let saved = loadData() {
-            songs += saved
-        }
-        else{
-            
-        }
+        self.loadData()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.loadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -36,14 +35,14 @@ class HomeFavoritesController: UITableViewController{
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            songs.remove(at: indexPath.row)
+            albums.remove(at: indexPath.row)
             saveData()
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return songs.count
+        return albums.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,35 +50,42 @@ class HomeFavoritesController: UITableViewController{
             fatalError("Not of type HomeFavorites")
         }
         
-        let song = songs[indexPath.row]
-        
-        cell.SongNameLabel.text = song.title
-        cell.SongImage.image = song.image
-        
+        let album = albums[indexPath.row]
+        cell.AlbumModel = album
+        cell.SongNameLabel.text = album.name
+        if let url = album.photoSmall {
+            cell.SongImage.downloadedFrom(link: url)
+        }
         return cell
     }
     
-    private func loadData() -> [Song]?  {
-        let data = [
-            Song(title: "Test song 1", image: nil)!,
-            Song(title: "Test song 2", image: nil)!
-        ]
-        if let stored = NSKeyedUnarchiver.unarchiveObject(withFile: Song.ArchiveURL.path) as? [Song], !stored.isEmpty {
-            return stored
+    private func loadData() {
+        if let stored = LocalStorageRepository.LoadData() {
+            albums = stored
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
-        return data
+        else{
+            print("First run, saving empty object")
+            self.saveData()
+        }
     }
     
     private func saveData(){
-        
-        let success = NSKeyedArchiver.archiveRootObject(songs, toFile: Song.ArchiveURL.path)
-        if success {
-            os_log("Data saved locally", log: OSLog.default, type: .debug)
+        LocalStorageRepository.SaveData(self.albums)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nvc = segue.destination as? UINavigationController {
+            if let vc = nvc.visibleViewController as? AlbumDetailController {
+                if let cell = sender as? HomeFavoritesCell {
+                    if let album = cell.AlbumModel {
+                        vc.AlbumModel = album
+                    }
+                }
+            }
         }
-        else {
-            os_log("Data save failed", log: OSLog.default, type: .error)
-        }
-        
     }
 }
 

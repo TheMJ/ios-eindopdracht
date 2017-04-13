@@ -13,7 +13,8 @@ class HomeFavoritesCell: UITableViewCell {
     //MARK - properties
     @IBOutlet weak var SongImage: UIImageView!
     @IBOutlet weak var SongNameLabel: UILabel!
-    @IBOutlet weak var SongBuyButton: UIButton!
+    
+    var AlbumModel: Album? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()

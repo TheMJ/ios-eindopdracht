@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,47 +22,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iOS_19_logo" translatesAutoresizingMaskIntoConstraints="NO" id="KId-Rk-bB6">
-                                <rect key="frame" x="16" y="28" width="343" height="307"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iOS_19_logo" translatesAutoresizingMaskIntoConstraints="NO" id="KId-Rk-bB6">
+                                <rect key="frame" x="16" y="20" width="343" height="343"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="343" id="FUL-5M-Fxa"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mobile Development 2 IOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-se-bIc">
-                                <rect key="frame" x="48" y="383" width="279" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="746" text="Mobile Development 2 IOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Blt-se-bIc">
+                                <rect key="frame" x="48" y="410" width="279" height="29"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Made by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sq-HP-Ojk">
-                                <rect key="frame" x="152" y="498" width="71" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sq-HP-Ojk">
+                                <rect key="frame" x="152" y="530" width="71" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mike Jaartsveld" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffd-pj-Ar0">
-                                <rect key="frame" x="127" y="527" width="120" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mike Jaartsveld" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffd-pj-Ar0">
+                                <rect key="frame" x="127" y="588" width="120" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coen van der List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vda-6R-MM4">
-                                <rect key="frame" x="123" y="546" width="134" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coen van der List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vda-6R-MM4">
+                                <rect key="frame" x="120.5" y="566" width="134" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Eindopdracht" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIX-4i-n8F">
-                                <rect key="frame" x="118" y="343" width="139" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Eindopdracht" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIX-4i-n8F">
+                                <rect key="frame" x="118" y="373" width="139" height="29"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="KId-Rk-bB6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1Ay-Ws-roe"/>
+                            <constraint firstItem="bIX-4i-n8F" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2R5-LL-Toh"/>
+                            <constraint firstItem="Vda-6R-MM4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="104.5" id="2zF-IX-OjL"/>
+                            <constraint firstItem="Vda-6R-MM4" firstAttribute="top" secondItem="7Sq-HP-Ojk" secondAttribute="bottom" constant="15" id="3cD-Qr-a9X"/>
+                            <constraint firstItem="bIX-4i-n8F" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="102" id="5AL-WS-4ko"/>
+                            <constraint firstItem="KId-Rk-bB6" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="5hC-xa-xcb"/>
+                            <constraint firstItem="7Sq-HP-Ojk" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="136" id="7yz-eY-pqh"/>
+                            <constraint firstItem="Blt-se-bIc" firstAttribute="top" secondItem="bIX-4i-n8F" secondAttribute="bottom" constant="8" id="92u-oU-OzO"/>
+                            <constraint firstItem="Vda-6R-MM4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="BzN-zN-X2Y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Sq-HP-Ojk" secondAttribute="trailing" constant="136" id="HLa-a0-p7e"/>
+                            <constraint firstItem="7Sq-HP-Ojk" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MhK-vX-59h"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ffd-pj-Ar0" secondAttribute="trailing" constant="112" id="ORW-IL-hGT"/>
+                            <constraint firstItem="ffd-pj-Ar0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PX5-Q9-mNe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bIX-4i-n8F" secondAttribute="trailing" constant="102" id="RVd-ot-WWR"/>
+                            <constraint firstItem="ffd-pj-Ar0" firstAttribute="top" secondItem="Vda-6R-MM4" secondAttribute="bottom" constant="1" id="Sbj-HQ-6Cp"/>
+                            <constraint firstItem="bIX-4i-n8F" firstAttribute="top" secondItem="KId-Rk-bB6" secondAttribute="bottom" constant="10" id="T5F-6E-bnN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Blt-se-bIc" secondAttribute="trailing" constant="32" id="T7O-v6-Wgo"/>
+                            <constraint firstItem="7Sq-HP-Ojk" firstAttribute="top" secondItem="Blt-se-bIc" secondAttribute="bottom" constant="91" id="bnk-FI-GAJ"/>
+                            <constraint firstItem="Blt-se-bIc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="32" id="d8p-K8-ixV"/>
+                            <constraint firstItem="KId-Rk-bB6" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="ihN-D5-tl6"/>
+                            <constraint firstItem="ffd-pj-Ar0" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="111" id="jao-9x-D93"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vda-6R-MM4" secondAttribute="trailing" constant="104.5" id="kay-xB-2Oh"/>
+                            <constraint firstItem="KId-Rk-bB6" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="p63-bs-eEN"/>
+                            <constraint firstItem="Blt-se-bIc" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="xng-I1-BtL"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
